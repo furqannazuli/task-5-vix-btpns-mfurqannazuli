@@ -3,11 +3,11 @@ package controllers
 import (
 	"net/http"
 
+	photoRes "github.com/furqannazuli/task-5-vix-btpns-mfurqannazuli/app/photo"
+	"github.com/furqannazuli/task-5-vix-btpns-mfurqannazuli/helpers"
+	"github.com/furqannazuli/task-5-vix-btpns-mfurqannazuli/models"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	photoRes "github.com/hafifamudi/task-5-vix-btpns-hafifnurmuhammad/app/photo"
-	"github.com/hafifamudi/task-5-vix-btpns-hafifnurmuhammad/helpers"
-	"github.com/hafifamudi/task-5-vix-btpns-hafifnurmuhammad/models"
 	"gorm.io/gorm"
 )
 

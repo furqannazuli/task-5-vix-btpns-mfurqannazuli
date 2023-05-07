@@ -16,7 +16,7 @@ IP=localhost
 PSQLURL ?= $(DB_TYPE)://$(DB_USER):$(DB_PWD)@$(IP):5432/$(DB_NAME)
 
 # container network name
-NET_NAME ?= go-postgres
+NET_NAME ?= postgres_net
 # container name
 CON_NAME ?= postgres_db
 # postgres version

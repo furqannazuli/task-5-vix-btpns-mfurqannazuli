@@ -1,10 +1,10 @@
 package router
 
 import (
+	"github.com/furqannazuli/task-5-vix-btpns-mfurqannazuli/controllers"
+	"github.com/furqannazuli/task-5-vix-btpns-mfurqannazuli/database"
+	"github.com/furqannazuli/task-5-vix-btpns-mfurqannazuli/middlewares"
 	"github.com/gin-gonic/gin"
-	"github.com/hafifamudi/task-5-vix-btpns-hafifnurmuhammad/controllers"
-	"github.com/hafifamudi/task-5-vix-btpns-hafifnurmuhammad/database"
-	"github.com/hafifamudi/task-5-vix-btpns-hafifnurmuhammad/middlewares"
 )
 
 func RouteInit() *gin.Engine {

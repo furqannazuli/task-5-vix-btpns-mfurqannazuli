@@ -4,10 +4,10 @@ import (
 	"encoding/json"
 	"net/http"
 
+	userRes "github.com/furqannazuli/task-5-vix-btpns-mfurqannazuli/app/user"
+	"github.com/furqannazuli/task-5-vix-btpns-mfurqannazuli/helpers"
+	"github.com/furqannazuli/task-5-vix-btpns-mfurqannazuli/models"
 	"github.com/gin-gonic/gin"
-	userRes "github.com/hafifamudi/task-5-vix-btpns-hafifnurmuhammad/app/user"
-	"github.com/hafifamudi/task-5-vix-btpns-hafifnurmuhammad/helpers"
-	"github.com/hafifamudi/task-5-vix-btpns-hafifnurmuhammad/models"
 	"gorm.io/gorm"
 )
 

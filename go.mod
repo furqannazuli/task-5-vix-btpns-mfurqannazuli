@@ -1,4 +1,4 @@
-module github.com/hafifamudi/task-5-vix-btpns-hafifnurmuhammad
+module github.com/furqannazuli/task-5-vix-btpns-mfurqannazuli
 
 go 1.19
 

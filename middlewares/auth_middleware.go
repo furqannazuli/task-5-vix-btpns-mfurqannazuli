@@ -5,9 +5,9 @@ import (
 	"strings"
 
 	"github.com/dgrijalva/jwt-go"
+	"github.com/furqannazuli/task-5-vix-btpns-mfurqannazuli/helpers"
+	"github.com/furqannazuli/task-5-vix-btpns-mfurqannazuli/models"
 	"github.com/gin-gonic/gin"
-	"github.com/hafifamudi/task-5-vix-btpns-hafifnurmuhammad/helpers"
-	"github.com/hafifamudi/task-5-vix-btpns-hafifnurmuhammad/models"
 	"gorm.io/gorm"
 )
 

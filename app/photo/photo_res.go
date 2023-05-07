@@ -1,6 +1,6 @@
 package photo
 
-import "github.com/hafifamudi/task-5-vix-btpns-hafifnurmuhammad/models"
+import "github.com/furqannazuli/task-5-vix-btpns-mfurqannazuli/models"
 
 type PhotoResponse struct {
 	ID       int    `json:"id"`

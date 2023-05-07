@@ -1,25 +1,36 @@
-# Golang Restful API - **Virtual Internship Bank BTPN Syariah** 
+# **Final Project Virtual Internship Rakamin Academy BTPN Syariah** 
 
-<hr />
-<br />
+<hr/>
+<br/>
 
-<h1> Coba dulu </h1>
-
-## About the API
+## Description
 <p style="margin-left: 10px">
-    Ini adalah <i>Restful API</i> yang di bentuk sebagai tugas akhir pada <b>Virtual Internship - Bank BTPN Syariah</b>. Disini  pengatahuan kami di uji terkait dengan Bahasa Pemrograman <i>Golang</i>, dengan membuat sebuah  <i>Restful API</i> dengan requirement yang telah di tentukan sebelumnya.  <i>Restful API</i> ini terdiri dari dua Enpoint, yakni User Endpoint (Login & Register) dan Photo Endpoint. Gambaran lebih detail terkait dengan <i>System Design</i> dan <i>API Specification</i> nya dapat di lihat pada bagian selanjutnya.
+    Program ini merupakan tugas akhir dari program <b>Virtual Internship Rakamin Academy di BTPN Syariah.</b>
+    Para peserta diarahkan untuk membentuk API berdasarkan kasus yang telah diberikan. Menggunakan bahasa pemrograman Golang dan bantuan Docker.
+</p>
+
+## Task
+<p style="margin-left: 10px">
+    Berdasarkan data yang telah diolah oleh tim Data Analysts, bahwa untuk meningkatkan engagement user pada aplikasi m-banking adalah meningkatkan aspek memiliki user pada aplikasi tersebut. Saran yang diberikan oleh tim data analysts adalah membentuk fitur personalize user, salah satunya adalah memungkinkan user dapat mengupload gambar untuk dijadikan foto profilnya. Tim developer bertanggung jawab untuk mengembangkan fitur ini, dan kalian diberikan tugas untuk merancang API pada fitur upload, dan menghapus gambar. Beberapa ketentuannya antara lain :
+    <ul>
+        <li>User dapat menambahkan foto profile</li>
+        <li>Sistem dapat mengidentifikasi User ( log in / sign up)</li>
+        <li>Hanya user yang telah log in / sign up yang dapat melakukan delete / tambah foto profil</li>
+        <li>User dapat menghapus gambar yang telah di post</li>
+        <li>User yang berbeda tidak dapat menghapus / mengubah foto yang telah dibuat oleh user lain</li>
+    </ul>
 </p>
 
 ## Set up
 <p style="margin-left: 10px">
-    Telah di sediakan file  <b>Makefile</b> yang berfungsi untuk menjalankan beberapa init script terkait dengan <i>Golang Restful API</i> nya
+    Dalam program ini saya tambahkan file <b>JalanAPI</b> yang memiliki fungsi dalam menjalankan beberapa init script yang terkait dengan <i>Golang Restful API.</i>
 </p>
+Beberapa perintah yang ada yaitu sebagai berikut :
+- postgresup (untuk melakukan pull postgres docker image dan set up volume untuk persistance storage)
+- postgresdown (untuk menghentikan proses postgres docker image yang sedang berjalan pada suatu container dan membuang cache container)
+- psql (untuk memulai interactive shell dari container postgres yang sedang berjalan)
 
-- postgresup (untuk melakukan pull postgres docker image nya dan set up volume untuk persistance storage)
-- postgresdown (untuk menghentikan proses docker image postgres yang sedang berjalan pada suatu container dan remove cache container nya)
-- psql (untuk memulai interactive shell dari container postgres yang sedang berjalan. Hal ini bermanfaat jika ingin melakukan debugging ke dalam database -> table postgres nya)
-
-`Contoh perintah : make <target> | make postgresup`
+`Perintah : make <target>, Contoh : make postgresup`
 
 <p style="margin-left: 10px">
     Berikut adalah step-by-step untuk men-setup docker image <i>Golang Restful API</i> dan <i>PostgreSQL</i> secara cepat. Agar dapat secara langsung me-running <i>Restful API</i> nya.
@@ -28,7 +39,7 @@
 - `make build` | untuk mem-build image dari <i>Golang Restful API </i> nya
 - `make run` | me-running image Golang dan Postgres nya secaras otomatis.
 
-That's it, Restful API nya sudah bisa di testing sekarang, Enjoy :)
+That's it, Restful API nya sudah bisa di testing sekarang, Enjoy :
 
 <br />
 

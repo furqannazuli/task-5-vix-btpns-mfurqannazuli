@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/hafifamudi/task-5-vix-btpns-hafifnurmuhammad/database"
-	"github.com/hafifamudi/task-5-vix-btpns-hafifnurmuhammad/router"
+	"github.com/furqannazuli/task-5-vix-btpns-mfurqannazuli/database"
+	"github.com/furqannazuli/task-5-vix-btpns-mfurqannazuli/router"
 )
 
 func main() {
