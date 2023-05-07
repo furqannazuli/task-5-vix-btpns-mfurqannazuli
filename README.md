@@ -26,13 +26,12 @@
     Dalam program ini saya tambahkan file <b>JalanAPI</b> yang memiliki fungsi dalam menjalankan beberapa init script yang terkait dengan <i>Golang Restful API.</i>
 </p>
 Beberapa perintah yang ada yaitu sebagai berikut :
-- postgresup (untuk melakukan pull postgres docker image dan set up volume untuk persistance storage)
-- postgresdown (untuk menghentikan proses postgres docker image yang sedang berjalan pada suatu container dan membuang cache container)
-- psql (untuk memulai interactive shell dari container postgres yang sedang berjalan)
-
+<ul>
+    <li>postgresup (untuk melakukan pull postgres docker image dan set up volume untuk persistance storage)</li>
+    <li>postgresdown (untuk menghentikan proses postgres docker image yang sedang berjalan pada suatu container dan membuang cache container)</li>
+    <li>psql (untuk memulai interactive shell dari container postgres yang sedang berjalan)</li>
+</ul>
 `Perintah : make <target>, Contoh : make postgresup`
-
-<br />
 
 ## Cara Menjalankan Program
 <p style="margin-left:10px">
@@ -40,20 +39,20 @@ Beberapa perintah yang ada yaitu sebagai berikut :
 </p>
 
 - Development 
-    Untuk menjalankan tahapan development ini, harus melalui beberapa konfigurasi yaitu:
+    - Untuk menjalankan tahapan development ini, harus melalui beberapa konfigurasi yaitu:
         - Ubah DB_HOST menjadi localhost (file <b>Dockerfile</b>)
         - Ubah DB_PORT menjadi 5433 (file <b>Dockerfile</b>)
         - Ubah STAGE menjadi development (file <b>Dockerfile</b>)
         - Jalankan perintah `make postgresup` di terminal
         - Jalankan perintah `go run main.go` di terminal
 - Testing
-    Untuk menjalankan tahapan testing ini, harus melalui beberapa konfigurasi yaitu:
+    - Untuk menjalankan tahapan testing ini, harus melalui beberapa konfigurasi yaitu:
         - Ubah DB_HOST menjadi localhost (file <b>Dockerfile</b>)
         - Ubah DB_PORT menjadi 5433 (file <b>Dockerfile</b>)
         - Ubah STAGE menjadi testing (file <b>Dockerfile</b>)
         - Jalankan perintah `make test` di terminal
 - Production
-    Untuk menjalankan tahapan production (dengan container), harus melalui beberapa konfigurasi yaitu:
+    - Untuk menjalankan tahapan production (dengan container), harus melalui beberapa konfigurasi yaitu:
         - Anda tidak perlu melakukan konfigurasi pada file .env, karena untuk keperluan demonstrasi, saya telah melakukan konfigurasi ENV Variable pada Dockerfile
         - Jalankan perintah `make build` di terminal
         - Jalankan perintah `make run` di terminal
