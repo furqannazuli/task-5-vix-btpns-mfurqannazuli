@@ -26,13 +26,12 @@ func InitDB() {
 		path = ".env"
 	}
 
-	// comment this line for production ready app (with container)
 	helpers.LoadEnv(path)
 
 	dbURI := fmt.Sprintf(
 		"postgres://%s:%s@%s:%d/%s?sslmode=disable",
 		helpers.GetAsString("DB_USER", "postgres"),
-		helpers.GetAsString("DB_PASSWORD", "mysecretpassword"),
+		helpers.GetAsString("DB_PASSWORD", "passwordnya"),
 		helpers.GetAsString("DB_HOST", "localhost"),
 		helpers.GetAsInt("DB_PORT", 5433),
 		helpers.GetAsString("DB_NAME", "postgres"),

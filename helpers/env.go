@@ -11,7 +11,7 @@ import (
 func LoadEnv(path string) {
 	err := godotenv.Load(path)
 	if err != nil {
-		log.Fatal("Error loading .env file")
+		log.Fatal("Gagal memproses file .env")
 	}
 }
 

@@ -22,7 +22,6 @@ func AuthMiddleware(db *gorm.DB) gin.HandlerFunc {
 			return
 		}
 
-		//split the token and take the value
 		tokenString := ""
 		dataToken := strings.Split(authHeader, " ")
 		if len(dataToken) == 2 {
@@ -55,5 +54,4 @@ func AuthMiddleware(db *gorm.DB) gin.HandlerFunc {
 
 		c.Set("currentUser", user)
 	}
-
 }

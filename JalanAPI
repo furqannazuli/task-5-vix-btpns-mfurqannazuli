@@ -1,25 +1,13 @@
-# database name
 DB_NAME ?= postgres
-
-# database type
 DB_TYPE ?= postgres
-
-# database username
 DB_USER ?= postgres
-
-# database password
-DB_PWD ?= mysecretpassword
-
-# psql URL
+DB_PWD ?= passwordnya
 IP=localhost
 
 PSQLURL ?= $(DB_TYPE)://$(DB_USER):$(DB_PWD)@$(IP):5432/$(DB_NAME)
 
-# container network name
 NET_NAME ?= postgres_net
-# container name
 CON_NAME ?= postgres_db
-# postgres version
 POST_VERSION ?= postgres:15.2-alpine
 
 .PHONY : postgresup postgresdown test build
@@ -53,9 +41,7 @@ go_app:
 	-d -t go-rest-api:0.0.1
 
 run: go_app postgresup
-
-# USEFUL TARGET FOR DESTROY or DELETE ALL RUNNING or CACHE CONTAINER
-IMAGE_NAME ?= go-rest-api:0.0.1 # insert your custome image name or ID_
+IMAGE_NAME ?= program_1
 
 delete_container:
 	docker rm -f $(CON_NAME)

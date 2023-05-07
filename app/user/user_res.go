@@ -2,15 +2,15 @@ package user
 
 import "github.com/furqannazuli/task-5-vix-btpns-mfurqannazuli/models"
 
+type UserResponseWithToken struct {
+	UserResponse
+	Token string `json:"token"`
+}
+
 type UserResponse struct {
 	ID       int    `json:"id"`
 	Username string `json:"username"`
 	Email    string `json:"email"`
-}
-
-type UserResponseWithToken struct {
-	UserResponse
-	Token string `json:"token"`
 }
 
 func FormatUserResponse(user models.User, token string) interface{} {
@@ -33,6 +33,5 @@ func FormatUserResponse(user models.User, token string) interface{} {
 			Token:        token,
 		}
 	}
-
 	return formatter
 }

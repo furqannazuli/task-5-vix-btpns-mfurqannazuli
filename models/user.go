@@ -23,7 +23,6 @@ func (u *User) BeforeCreate(tx *gorm.DB) (err error) {
 	if errVal != nil {
 		return errVal
 	}
-
 	return nil
 }
 
@@ -33,6 +32,5 @@ func (u *User) BeforeUpdate(tx *gorm.DB) (err error) {
 	if errVal != nil {
 		return errVal
 	}
-
 	return errVal
 }

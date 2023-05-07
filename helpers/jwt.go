@@ -31,13 +31,12 @@ func ValidateToken(encodedToken string) (*jwt.Token, error) {
 		_, ok := token.Method.(*jwt.SigningMethodHMAC)
 
 		if !ok {
-			return nil, errors.New("invalid token")
+			return nil, errors.New("Token tidak valid")
 		}
 
 		return []byte(SECRET_KEY), nil
 
 	})
-
 	if err != nil {
 		return token, err
 	}

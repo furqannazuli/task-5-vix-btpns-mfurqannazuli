@@ -19,27 +19,29 @@ func NewPhotoController(db *gorm.DB) *photoController {
 	return &photoController{db}
 }
 
+// Get Foto
 func (h *photoController) Get(c *gin.Context) {
 	var userPhoto models.Photo
 	err := h.db.Preload("User").Find(&userPhoto).Error
 
 	if err != nil {
-		response := helpers.ApiResponse(http.StatusBadRequest, "error", nil, "Failed to Get Your Photo")
+		response := helpers.ApiResponse(http.StatusBadRequest, "error", nil, "Gagal mendapatkan foto")
 		c.JSON(http.StatusBadRequest, response)
 		return
 	}
 
 	if userPhoto.PhotoURL == "" {
-		response := helpers.ApiResponse(http.StatusBadRequest, "error", nil, "Please Upload Your Photo")
+		response := helpers.ApiResponse(http.StatusBadRequest, "error", nil, "Tolong upload foto terlebih dahulu")
 		c.JSON(http.StatusBadRequest, response)
 		return
 	}
 
 	formatter := photoRes.FormatPhoto(&userPhoto, "")
-	response := helpers.ApiResponse(http.StatusOK, "success", formatter, "Successfully Fetch User Photo")
+	response := helpers.ApiResponse(http.StatusOK, "success", formatter, "Sukses upload foto")
 	c.JSON(http.StatusOK, response)
 }
 
+// Upload Foto
 func (h *photoController) Create(c *gin.Context) {
 	var userPhoto models.Photo
 	var countPhoto int64
@@ -50,7 +52,7 @@ func (h *photoController) Create(c *gin.Context) {
 		data := gin.H{
 			"is_uploaded": false,
 		}
-		response := helpers.ApiResponse(http.StatusBadRequest, "error", data, "You Already Have a Photo")
+		response := helpers.ApiResponse(http.StatusBadRequest, "error", data, "Anda sudah memiliki foto")
 		c.JSON(http.StatusBadRequest, response)
 		return
 	}
@@ -61,7 +63,7 @@ func (h *photoController) Create(c *gin.Context) {
 		errors := helpers.FormatValidationError(err)
 		errorMessages := gin.H{"errors": errors}
 
-		response := helpers.ApiResponse(http.StatusUnprocessableEntity, "error", errorMessages, "Failed to Upload User Photo")
+		response := helpers.ApiResponse(http.StatusUnprocessableEntity, "error", errorMessages, "Gagal untuk upload foto user")
 		c.JSON(http.StatusBadRequest, response)
 		return
 	}
@@ -71,7 +73,7 @@ func (h *photoController) Create(c *gin.Context) {
 		errors := helpers.FormatValidationError(err)
 		errorMessages := gin.H{"errors": errors}
 
-		response := helpers.ApiResponse(http.StatusUnprocessableEntity, "error", errorMessages, "Failed to Upload User Photo")
+		response := helpers.ApiResponse(http.StatusUnprocessableEntity, "error", errorMessages, "Gagal untuk upload foto user")
 		c.JSON(http.StatusUnprocessableEntity, response)
 		return
 	}
@@ -83,7 +85,7 @@ func (h *photoController) Create(c *gin.Context) {
 	if err != nil {
 		data := gin.H{"is_uploaded": false}
 
-		response := helpers.ApiResponse(http.StatusUnprocessableEntity, "error", data, "Failed to Upload User Photo")
+		response := helpers.ApiResponse(http.StatusUnprocessableEntity, "error", data, "Gagal untuk upload foto user")
 		c.JSON(http.StatusUnprocessableEntity, response)
 		return
 	}
@@ -91,10 +93,11 @@ func (h *photoController) Create(c *gin.Context) {
 	h.InsertPhoto(input, path, currentUser.ID)
 
 	data := gin.H{"is_uploaded": true}
-	response := helpers.ApiResponse(http.StatusOK, "success", data, "Photo Profile Successfully Uploaded")
+	response := helpers.ApiResponse(http.StatusOK, "success", data, "Foto profile berhasil diupload")
 	c.JSON(http.StatusOK, response)
 }
 
+// Upload Foto
 func (h *photoController) InsertPhoto(userPhoto models.Photo, fileLocation string, currUserID int) error {
 	savePhoto := models.Photo{
 		UserID:   currUserID,
@@ -110,13 +113,14 @@ func (h *photoController) InsertPhoto(userPhoto models.Photo, fileLocation strin
 	return nil
 }
 
+// Update Foto
 func (h *photoController) Update(c *gin.Context) {
 	var userPhoto models.Photo
 	currentUser := c.MustGet("currentUser").(models.User)
 
 	err := h.db.Where("user_id = ?", currentUser.ID).Find(&userPhoto).Error
 	if err != nil {
-		response := helpers.ApiResponse(http.StatusBadRequest, "error", err, "Photo Profile Failed to Update")
+		response := helpers.ApiResponse(http.StatusBadRequest, "error", err, "Foto profile gagal diupdate")
 		c.JSON(http.StatusBadRequest, response)
 		return
 	}
@@ -124,7 +128,7 @@ func (h *photoController) Update(c *gin.Context) {
 	var input models.Photo
 	err = c.ShouldBind(&input)
 	if err != nil {
-		response := helpers.ApiResponse(http.StatusBadRequest, "error", err, "Photo Profile Failed to Update")
+		response := helpers.ApiResponse(http.StatusBadRequest, "error", err, "Foto profile gagal diupdate")
 		c.JSON(http.StatusBadRequest, response)
 		return
 	}
@@ -133,7 +137,7 @@ func (h *photoController) Update(c *gin.Context) {
 	if err != nil {
 		data := gin.H{"is_uploaded": false}
 
-		response := helpers.ApiResponse(http.StatusUnprocessableEntity, "error", data, "Failed to Update User Photo")
+		response := helpers.ApiResponse(http.StatusUnprocessableEntity, "error", data, "Foto user gagal diupdate")
 		c.JSON(http.StatusUnprocessableEntity, response)
 		return
 	}
@@ -143,7 +147,7 @@ func (h *photoController) Update(c *gin.Context) {
 
 	err = c.SaveUploadedFile(file, path)
 	if err != nil {
-		response := helpers.ApiResponse(http.StatusBadRequest, "error", err, "Photo Profile Failed to Upload")
+		response := helpers.ApiResponse(http.StatusBadRequest, "error", err, "Foto profile gagal diupdate")
 		c.JSON(http.StatusBadRequest, response)
 		return
 	}
@@ -151,10 +155,11 @@ func (h *photoController) Update(c *gin.Context) {
 	h.UpdatePhoto(input, &userPhoto, path)
 
 	data := photoRes.FormatPhoto(&userPhoto, "regular")
-	response := helpers.ApiResponse(http.StatusOK, "success", data, "Photo Profile Successfully Updated")
+	response := helpers.ApiResponse(http.StatusOK, "success", data, "Foto profile berhasil diupdate")
 	c.JSON(http.StatusOK, response)
 }
 
+// Update Foto
 func (h *photoController) UpdatePhoto(oldPhoto models.Photo, newPhoto *models.Photo, path string) error {
 	newPhoto.Title = oldPhoto.Title
 	newPhoto.Caption = oldPhoto.Caption
@@ -168,6 +173,7 @@ func (h *photoController) UpdatePhoto(oldPhoto models.Photo, newPhoto *models.Ph
 	return nil
 }
 
+// Hapus Foto
 func (h *photoController) Delete(c *gin.Context) {
 	var userPhoto models.Photo
 	currentUser := c.MustGet("currentUser").(models.User)
@@ -178,7 +184,7 @@ func (h *photoController) Delete(c *gin.Context) {
 			"is_deleted": false,
 		}
 
-		response := helpers.ApiResponse(http.StatusBadRequest, "error", data, "Failed to delete user photo")
+		response := helpers.ApiResponse(http.StatusBadRequest, "error", data, "Gagal untuk menghapus foto")
 		c.JSON(http.StatusBadRequest, response)
 		return
 	}
@@ -187,6 +193,6 @@ func (h *photoController) Delete(c *gin.Context) {
 		"is_deleted": true,
 	}
 
-	response := helpers.ApiResponse(http.StatusOK, "success", data, "User Photo Successfully Deleted")
+	response := helpers.ApiResponse(http.StatusOK, "success", data, "Foto user berhasil dihapus")
 	c.JSON(http.StatusOK, response)
 }

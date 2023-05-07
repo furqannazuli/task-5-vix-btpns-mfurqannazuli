@@ -2,6 +2,13 @@ package photo
 
 import "github.com/furqannazuli/task-5-vix-btpns-mfurqannazuli/models"
 
+type PhotoRegularResponse struct {
+	ID       int    `json:"id"`
+	Title    string `json:"title"`
+	Caption  string `json:"caption"`
+	PhotoURL string `json:"photo_url"`
+}
+
 type PhotoResponse struct {
 	ID       int    `json:"id"`
 	Title    string `json:"title"`
@@ -9,13 +16,6 @@ type PhotoResponse struct {
 	PhotoURL string `json:"photo_url"`
 	UserID   int    `json:"user_id"`
 	User     models.User
-}
-
-type PhotoRegularResponse struct {
-	ID       int    `json:"id"`
-	Title    string `json:"title"`
-	Caption  string `json:"caption"`
-	PhotoURL string `json:"photo_url"`
 }
 
 func FormatPhoto(photo *models.Photo, typeRes string) interface{} {
@@ -38,6 +38,5 @@ func FormatPhoto(photo *models.Photo, typeRes string) interface{} {
 			User:     *photo.User,
 		}
 	}
-
 	return formatter
 }

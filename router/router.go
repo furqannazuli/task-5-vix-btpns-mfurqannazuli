@@ -33,6 +33,5 @@ func RouteInit() *gin.Engine {
 		photoRoute.PUT("/", middlewares.AuthMiddleware(db), photoController.Update)
 		photoRoute.DELETE("/", middlewares.AuthMiddleware(db), photoController.Delete)
 	}
-
 	return route
 }

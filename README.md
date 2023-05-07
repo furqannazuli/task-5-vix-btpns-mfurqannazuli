@@ -1,7 +1,6 @@
 # **Final Project Virtual Internship Rakamin Academy BTPN Syariah** 
 
 <hr/>
-<br/>
 
 ## Description
 <p style="margin-left: 10px">

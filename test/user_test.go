@@ -25,8 +25,8 @@ func TestLogin(t *testing.T) {
 	api := "/api/v1"
 	r := router.RouteInit()
 
-	randUsername := fmt.Sprintf("Hafif Nur Muhammad %d", randNum)
-	randEmail := fmt.Sprintf("hafifcyber%d@gmail.com", randNum)
+	randUsername := fmt.Sprintf("M Furqan Nazuli %d", randNum)
+	randEmail := fmt.Sprintf("mfnazuli%d@gmail.com", randNum)
 	newUser := models.User{
 		Username: randUsername,
 		Email:    randEmail,

@@ -19,6 +19,7 @@ func NewUserController(db *gorm.DB) *userController {
 	return &userController{db}
 }
 
+// Register User
 func (h *userController) Register(c *gin.Context) {
 	var user models.User
 	c.ShouldBindJSON(&user)
@@ -37,11 +38,12 @@ func (h *userController) Register(c *gin.Context) {
 	}
 
 	formatter := userRes.FormatUserResponse(user, "")
-	response := helpers.ApiResponse(http.StatusOK, "success", formatter, "User Registered Succesfully")
+	response := helpers.ApiResponse(http.StatusOK, "success", formatter, "Registrasi Berhasil")
 
 	c.JSON(http.StatusOK, response)
 }
 
+// Login User
 func (h *userController) Login(c *gin.Context) {
 	var user models.User
 
@@ -50,31 +52,32 @@ func (h *userController) Login(c *gin.Context) {
 	Inputpassword := user.Password
 	err := h.db.Debug().Where("email = ?", user.Email).Find(&user).Error
 	if err != nil {
-		response := helpers.ApiResponse(http.StatusUnprocessableEntity, "error", nil, "Login Failed")
+		response := helpers.ApiResponse(http.StatusUnprocessableEntity, "error", nil, "Login Gagal")
 		c.JSON(http.StatusUnprocessableEntity, response)
 		return
 	}
 
 	comparePass := helpers.ComparePassword(user.Password, Inputpassword)
 	if !comparePass {
-		response := helpers.ApiResponse(http.StatusUnprocessableEntity, "error", nil, "Login Failed")
+		response := helpers.ApiResponse(http.StatusUnprocessableEntity, "error", nil, "Login Gagal")
 		c.JSON(http.StatusUnprocessableEntity, response)
 		return
 	}
 
 	token, err := helpers.GenerateToken(user.ID)
 	if err != nil {
-		response := helpers.ApiResponse(http.StatusUnprocessableEntity, "error", nil, "Login Failed")
+		response := helpers.ApiResponse(http.StatusUnprocessableEntity, "error", nil, "Login Gagal")
 		c.JSON(http.StatusUnprocessableEntity, response)
 		return
 	}
 
 	formatter := userRes.FormatUserResponse(user, token)
-	response := helpers.ApiResponse(http.StatusOK, "success", formatter, "User Login Succesfully")
+	response := helpers.ApiResponse(http.StatusOK, "success", formatter, "Login Berhasil")
 
 	c.JSON(http.StatusOK, response)
 }
 
+// Update User
 func (h *userController) Update(c *gin.Context) {
 	var oldUser models.User
 	var newUser models.User
@@ -106,10 +109,11 @@ func (h *userController) Update(c *gin.Context) {
 		return
 	}
 
-	response := helpers.ApiResponse(http.StatusOK, "success", nil, "User Updated Succesfully")
+	response := helpers.ApiResponse(http.StatusOK, "success", nil, "Update User Berhasil")
 	c.JSON(http.StatusOK, response)
 }
 
+// Delete User
 func (h *userController) Delete(c *gin.Context) {
 	var user models.User
 
@@ -128,6 +132,6 @@ func (h *userController) Delete(c *gin.Context) {
 		return
 	}
 
-	response := helpers.ApiResponse(http.StatusOK, "success", nil, "User Deleted Succesfully")
+	response := helpers.ApiResponse(http.StatusOK, "success", nil, "Menghapus User Berhasil")
 	c.JSON(http.StatusOK, response)
 }
