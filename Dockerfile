@@ -6,7 +6,7 @@ ENV DB_HOST     localhost
 ENV DB_PASSWORD passwordnya
 ENV DB_PORT     5433
 # development | testing | production
-ENV STAGE       testing
+ENV STAGE       development
 
 WORKDIR /app
 COPY go.* ./

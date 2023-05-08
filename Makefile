@@ -4,9 +4,9 @@ DB_USER ?= postgres
 DB_PWD ?= passwordnya
 IP=localhost
 
-PSQLURL ?= $(DB_TYPE)://$(DB_USER):$(DB_PWD)@$(IP):5432/$(DB_NAME)
+PSQLURL ?= $(DB_TYPE)://$(DB_USER):$(DB_PWD)@$(IP):5433/$(DB_NAME)
 
-NET_NAME ?= postgres_net
+NET_NAME ?= bridge
 CON_NAME ?= postgres_db
 POST_VERSION ?= postgres:15.2-alpine
 
